@@ -60,7 +60,7 @@ const ListMovies = ()=>{
         }else if (titlef){
             newList =  movies.filter(movie=>movie.title==titlef)
         }else if (ratef){
-            newList =  movies.filter(movie=>movie.rate==ratef)
+            newList =  movies.filter(movie=>movie.rate==ratef);
         }
          setMovies(newList)
      }
