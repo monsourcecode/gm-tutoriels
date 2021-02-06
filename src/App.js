@@ -1,10 +1,9 @@
 import './App.css';
+import UserList from "./UserList";
 
 const App = ()=> {
   return (
-       <div>
-           <h1>Hi</h1>
-       </div>
+      <UserList/>
   );
 }
 
