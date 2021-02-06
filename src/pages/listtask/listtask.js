@@ -1,33 +1,10 @@
 import './listtask.css'
 import {Link} from "react-router-dom";
-import {useState} from "react";
 import Task from "../task/task";
+import {useSelector} from "react-redux";
 
-const list = [
-    {
-        id:'2131132',
-        description:'uitjhghj',
-        isDone:'true',
-        date:'06-02-2012',
-        status:'DONE'
-    },
-    {
-        id:'2131132',
-        description:'uitjhghj',
-        isDone:'true',
-        date:'06-02-2012',
-        status:'DONE'
-    },
-    {
-        id:'2131132',
-        description:'uitjhghj',
-        isDone:'true',
-        date:'06-02-2012',
-        status:'DONE'
-    }
-]
 const ListTask = ()=>{
-    const [tasks, setTasks] = useState(list)
+    const tasks = useSelector((state)=>state.list.tasks)
     return(
         <div className={'main'}>
             <h1>List Tasks</h1>
