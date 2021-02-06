@@ -43,9 +43,7 @@ const ListTask = ()=>{
                 ))}
             </div>
             <Link to={'addtask'}>Go To Add Task</Link>
-
         </div>
-
     )
 }
 
