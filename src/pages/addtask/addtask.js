@@ -1,21 +1,53 @@
 import './addtask.css'
 import {Link} from "react-router-dom";
 import {Button, Card, Checkbox, FormControlLabel, MenuItem, Select, TextField} from "@material-ui/core";
-import {useState} from "react";
+import {useCallback, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {pushTask} from "../../store/store";
 
 const AddTask = ()=>{
+    const [id,setId] = useState('')
+    const [description,setDescription] = useState('')
+    const [date,setDate] = useState('')
+    const [status,setStatus] = useState('')
     const [checked, setChecked] = useState(false);
+    const tasks = useSelector((state)=>state.list.tasks)
+    const dispatch = useDispatch();
+    const addTask = useCallback((list) =>
+        dispatch(pushTask(list)), [dispatch]);
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
+    const add = ()=>{
+        const task = {
+            id,
+            description,
+            date,
+            status,
+            isDone:checked
+        }
+        let newList = [...tasks]
+        newList.push(task)
+        addTask(newList);
+        setStatus('')
+        setDate('')
+        setId('')
+        setChecked(false)
+    }
     return(
         <div className={'add-task-container'}>
             <h1>Add task</h1>
             <Card className={'card-add-style'}>
                 <div className={'sous-card'}>
-                    <TextField style={{width:'100%'}}  label="Id" />
-                    <TextField style={{width:'100%'}}  label="Description" />
+                    <TextField
+                        value={id}
+                        onChange={event => setId(event.target.value)}
+                        style={{width:'100%'}}  label="Id" />
+                    <TextField
+                        value={description}
+                        onChange={event => setDescription(event.target.value)}
+                        style={{width:'100%'}}  label="Description" />
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -34,15 +66,17 @@ const AddTask = ()=>{
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        value={date}
+                        onChange={event => setDate(event.target.value)}
                     />
                     <Select
-                        value={'TODO'}
-                        onChange={handleChange}>
+                        value={status}
+                        onChange={event => setStatus(event.target.value)}>
                         <MenuItem value={'TODO'}>TODO</MenuItem>
                         <MenuItem value={'DOING'}>DOING</MenuItem>
                         <MenuItem value={'DONE'}>DONE</MenuItem>
                     </Select>
-                    <Button style={{width:'30%',
+                    <Button onClick={add} style={{width:'30%',
                         alignSelf:'center', marginTop:10}}
                             variant="contained"
                             color="primary">
