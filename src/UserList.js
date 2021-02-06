@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import API from "./api";
 import './style.css'
-import {Card} from "@material-ui/core";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import Paper from '@material-ui/core/Paper';
 
 const UserList = ()=>{
     const [listOfUser,setListOfUser]=useState([])
@@ -18,20 +19,34 @@ const UserList = ()=>{
     return(
         <div className={'main'}>
             <h1>List user</h1>
-            <div className={'sous-main'}>
-                { listOfUser && listOfUser.map(user=>(
-                    <Card
-                        style={{backgroundColor:'#476eb7'}}
-                        className={'card'}>
-                        <h3>Name : {user.name}</h3>
-                        <h3>username : {user.username}</h3>
-                        <h3>email : {user.email}</h3>
-                        <h3>website : {user.website}</h3>
-                    </Card>
-                ))}
-            </div>
-
-
+            <TableContainer component={Paper}>
+                <Table  style={{minWidth: 650}} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">UserName</TableCell>
+                            <TableCell align="right">Email</TableCell>
+                            <TableCell align="right">Website</TableCell>
+                            <TableCell align="right">phone</TableCell>
+                            <TableCell align="right">Address</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {listOfUser &&listOfUser.map((row) => (
+                            <TableRow key={row.id}>
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.username}</TableCell>
+                                <TableCell align="right">{row.email}</TableCell>
+                                <TableCell align="right">{row.website}</TableCell>
+                                <TableCell align="right">{row.phone}</TableCell>
+                                <TableCell align="right">{row.address.street +'-' +  row.address.city}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     )
 }
