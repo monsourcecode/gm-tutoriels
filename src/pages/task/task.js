@@ -3,7 +3,7 @@ import {Card} from "@material-ui/core";
 
 const Task = (props)=>{
     return(
-        <Card className={'tast-card'}>
+        <Card style={{backgroundColor:'#6791b1'}} className={'task-card'}>
             <h3>Id : {props.id}</h3>
             <h3>Description : {props.description}</h3>
             <h3>Is Done : {props.isDone}</h3>
