@@ -11,7 +11,7 @@ const App = ()=> {
              <Route exact path="/">
                  <Redirect to="/listtasks"/>
              </Route>
-            <Route path={'/listtasks'} component={ListTask}/>
+            <Route  path={'/listtasks'} component={ListTask}/>
             <Route path={'/addtask'} component={AddTask}/>
              <Route component={NotFound}/>
          </Switch>

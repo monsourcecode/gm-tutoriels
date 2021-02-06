@@ -1,5 +1,5 @@
 import './addtask.css'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {Button, Card, Checkbox, FormControlLabel, MenuItem, Select, TextField} from "@material-ui/core";
 import {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,6 +11,7 @@ const AddTask = ()=>{
     const [date,setDate] = useState('')
     const [status,setStatus] = useState('')
     const [checked, setChecked] = useState(false);
+    let history = useHistory();
     const tasks = useSelector((state)=>state.list.tasks)
     const dispatch = useDispatch();
     const addTask = useCallback((list) =>
@@ -34,6 +35,7 @@ const AddTask = ()=>{
         setDate('')
         setId('')
         setChecked(false)
+        history.push('/listtasks')
     }
     return(
         <div className={'add-task-container'}>
