@@ -1,12 +1,13 @@
 import {PropTypes} from "proptype";
+import styles from "./style";
 
 const Profile = ({fullname ='Notre name',
                      profession='DEV',
                      bio= 20})=>{
 
      return (
-        <div>
-            <h1>Profile</h1>
+        <div style={styles.main}>
+            <h1 style={styles.monh1}>Profile</h1>
             <h3>Full Name : {fullname}</h3>
             <h3>Profession : {profession}</h3>
             <h3>Bio : {bio}</h3>
