@@ -1,10 +1,13 @@
 import './App.css';
-import ListMovies from "./components/listmovies/listmovies";
+import Profile from "./profile/profile";
 
 const App = ()=> {
   return (
     <div >
-     <ListMovies/>
+      <Profile
+       bio={'231231dssf'}
+       fullname={2313}
+      />
     </div>
   );
 }
