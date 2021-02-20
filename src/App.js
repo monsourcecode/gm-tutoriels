@@ -1,18 +1,18 @@
 import './App.css';
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import ListFilms from "./pages/listfilms/listfilms";
-import AddFilm from "./pages/addfilm/addfilm";
+import Login from "./pages/login/login";
+import Register from "./pages/register/register";
 
 const App = ()=> {
   return (
        <BrowserRouter>
          <Switch>
              <Route exact path="/">
-                 <Redirect to="/listfilms"/>
+                 <Redirect to="/login"/>
              </Route>
-            <Route path={'/listfilms'} component={ListFilms}/>
-            <Route path={'/addfilm'} component={AddFilm}/>
-         </Switch>
+            <Route path={'/login'} component={Login}/>
+            <Route path={'/register'} component={Register}/>
+          </Switch>
        </BrowserRouter>
   );
 }

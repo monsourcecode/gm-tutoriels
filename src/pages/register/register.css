@@ -1,0 +1,93 @@
+.container-rgister {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-rgister {
+    width: 40%;
+    height: 60%;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    background: #7d91b8;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-rgister {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-text-rgister {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.inputs-rgister {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs-rgister input {
+    height: 1.5rem;
+    width: 35%;
+    padding: .3rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+    padding-left: 2rem;
+    font-size: 1.1rem;
+
+}
+
+.actions-rgister {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.auth-rgister {
+    width: 40%;
+    background: #1d4575;
+    border-radius: 1rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.auth-rgister, .register-rgister a {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-rgister {
+    width: 40%;
+    background: #909396;
+    border-radius: 1rem;
+    margin-top: .5rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
