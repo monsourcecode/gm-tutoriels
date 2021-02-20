@@ -16,6 +16,7 @@ import {
 import {AccountCircle, Lock} from "@material-ui/icons";
 import {makeStyles} from '@material-ui/core/styles';
 import {forwardRef, useState} from "react";
+import API from "../../api/api";
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -31,7 +32,19 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
      const login = () => {
-
+         const data= {
+             email : username,
+             password:password
+         }
+         API.post('/login',data).then(res=>{
+             if (res.data.error ===false){
+                 alert(res.data.token)
+             }else {
+                 alert(res.data.msg)
+             }
+         }).catch(error=>{
+             console.log(error)
+         })
     }
     const [open, setOpen] = useState(false);
 
