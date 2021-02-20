@@ -31,6 +31,8 @@ const Login = () => {
     const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
      const login = () => {
          const data= {
              email : username,
@@ -40,7 +42,8 @@ const Login = () => {
              if (res.data.error ===false){
                  alert(res.data.token)
              }else {
-                 alert(res.data.msg)
+                  setMessage(res.data.msg)
+                 handleClickOpen()
              }
          }).catch(error=>{
              console.log(error)
@@ -68,7 +71,7 @@ const Login = () => {
                 <DialogTitle id="alert-dialog-slide-title">{"Information"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-
+                        {message}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -104,6 +107,9 @@ const Login = () => {
                             </InputAdornment>
                         }
                     />
+                    {message &&(
+                        <span>{message}</span>
+                    )}
                 </FormControl>
                 <Button onClick={login} variant="contained" color="primary" disableElevation>
                     Login
