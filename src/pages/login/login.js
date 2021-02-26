@@ -62,7 +62,8 @@ const Login = () => {
                 //rendre l'etat globale a true
                 loggedIn();
                 //store token in cache
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('token', res.data.data.token);
+                localStorage.setItem('user', JSON.stringify(res.data.data.user));
                 //navigate to home page
                 navigate('/home')
             } else {
@@ -84,6 +85,7 @@ const Login = () => {
     };
     return (
         <div className={'new-login-container'}>
+            <h1>{isLoggedIn}</h1>
             <Dialog
                 open={open}
                 TransitionComponent={Transition}

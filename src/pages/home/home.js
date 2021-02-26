@@ -1,13 +1,19 @@
 import {Button} from "@material-ui/core";
-import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
-import {useCallback} from "react";
+import {useDispatch} from "react-redux";
+import {Link, useHistory} from "react-router-dom";
+import {useCallback, useState} from "react";
 import {setLoggedOut} from "../../store/store";
 
 const Home = () => {
     const dispatch = useDispatch();
     const history = useHistory()
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const isLoggedIn = localStorage.getItem('token')
+    let user = localStorage.getItem('user')
+    console.log(user)
+    user = user ? JSON.parse(user) : {}
+    const [name, setName] = useState(user.name)
+    const [email, setEmail] = useState(user.email)
+
     const navigate = (path) => {
         history.push(path)
     }
@@ -19,10 +25,37 @@ const Home = () => {
         navigate('/login')
     }
     return (
-        <div>
-            <h1>Home page</h1>
-            <Button onClick={logout}>Logout</Button>
-        </div>
+        <>
+            {isLoggedIn && (
+                <div style={{
+                    width: '100%',
+                    height: 500,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center"
+                }}>
+                    <div style={{
+                        width: '80%', height: 40,
+                        backgroundColor: '#476ed0', display: "flex", justifyContent: 'space-between'
+                    }}>
+                        <span style={{color: '#fff'}}>{email}</span>
+                        <span style={{color: '#fff'}}>{name}</span>
+                    </div>
+                    <h1>Home page</h1>
+                    <Button onClick={logout}>Logout</Button>
+                </div>
+            )}
+
+            {!isLoggedIn && (
+                <>
+                    <h1>Not logging in</h1>
+                    <Link to="/login">Go Login</Link>
+                </>
+            )}
+            <div>
+                <h1>All Times </h1>
+            </div>
+        </>
     )
 }
 export default Home
