@@ -15,8 +15,11 @@ import {
 } from "@material-ui/core";
 import {AccountCircle, Lock} from "@material-ui/icons";
 import {makeStyles} from '@material-ui/core/styles';
-import {forwardRef, useState} from "react";
+import {forwardRef, useCallback, useEffect, useState} from "react";
 import API from "../../api/api";
+import {useDispatch, useSelector} from "react-redux";
+import {setLoggedIn} from "../../store/store";
+import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -32,22 +35,43 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const dispatch = useDispatch();
+    const history = useHistory()
 
-     const login = () => {
-         const data= {
-             email : username,
-             password:password
-         }
-         API.post('/login',data).then(res=>{
-             if (res.data.error ===false){
-                 alert(res.data.token)
-             }else {
-                  setMessage(res.data.msg)
-                 handleClickOpen()
-             }
-         }).catch(error=>{
-             console.log(error)
-         })
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token) {
+            setLoggedIn();
+            navigate('/home')
+        }
+    }, [])
+    const navigate = (path) => {
+        history.push(path)
+    }
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const loggedIn = useCallback(() =>
+        dispatch(setLoggedIn()), [dispatch])
+    const login = () => {
+        const data = {
+            email: username,
+            password: password
+        }
+        API.post('/login', data).then(res => {
+            if (res.data.error === false) {
+                console.log(res.data)
+                //rendre l'etat globale a true
+                loggedIn();
+                //store token in cache
+                localStorage.setItem('token', res.data.token);
+                //navigate to home page
+                navigate('/home')
+            } else {
+                setMessage(res.data.msg)
+                handleClickOpen()
+            }
+        }).catch(error => {
+            console.log(error)
+        })
     }
     const [open, setOpen] = useState(false);
 
@@ -107,7 +131,7 @@ const Login = () => {
                             </InputAdornment>
                         }
                     />
-                    {message &&(
+                    {message && (
                         <span>{message}</span>
                     )}
                 </FormControl>
