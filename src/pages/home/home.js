@@ -26,7 +26,7 @@ const Home = () => {
     }
     return (
         <>
-            {isLoggedIn && (
+            {isLoggedIn && user.type == 'APP' && (
                 <div style={{
                     width: '100%',
                     height: 500,
@@ -46,7 +46,7 @@ const Home = () => {
                 </div>
             )}
 
-            {!isLoggedIn && (
+            {!isLoggedIn && user.type == 'ENS' && (
                 <>
                     <h1>Not logging in</h1>
                     <Link to="/login">Go Login</Link>

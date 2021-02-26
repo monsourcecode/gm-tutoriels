@@ -4,6 +4,7 @@ import Login from "./pages/login/login";
 import Upload from "./pages/upload/upload";
 import Register from "./pages/register/register";
 import Home from "./pages/home/home";
+import Items from "./pages/Items/Items";
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
                 <Route path={'/register'} component={Register}/>
                 <Route path={'/upload'} component={Upload}/>
                 <Route path={'/home'} component={Home}/>
+                <Route path={'/items'} component={Items}/>
                 <Route component={Login}/>
             </Switch>
         </BrowserRouter>
