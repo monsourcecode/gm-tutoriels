@@ -21,7 +21,7 @@ const Upload = () => {
         formData.set('cat', cat)
         API.post('uploadwithdata', formData)
             .then(res => {
-                console.log(res.data)
+                alert(res.data.mas)
                 setSrc(res.data.path)
             })
             .catch(err => {
@@ -40,7 +40,9 @@ const Upload = () => {
                     value={cat}
                     onChange={event => setCat(event.target.value)}
                     placeholder={'Ctégorie'}/>
-                <input onChange={handel} ref={el} type={'file'}/>
+                <input
+                    accept={'image/png'}
+                    onChange={handel} ref={el} type={'file'}/>
                 <Button
                     style={{marginTop: 5}}
                     variant="contained"
